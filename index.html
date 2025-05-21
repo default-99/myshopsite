@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Modern Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #111;
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+          nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 255, 195, 0.2);
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ffc3;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-grow: 1;
+           
+            justify-content: center;
+      
+            position: relative;
+        }
+
+        nav ul li.right {
+            position: absolute;
+      
+            right: 1.5rem;
+         
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        nav ul li.right:nth-child(4) {
+          
+            right: 5rem;
+          
+        }
+
+        nav ul li a:hover {
+            color: #00ffc3;
+        }
+
+
+
+
+        /* Hero */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1618354691373-4b8d09bd7dfe?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00ffc3;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content .btn {
+            padding: 0.8rem 2rem;
+            background: #00ffc3;
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px #00ffc3;
+            transition: all 0.3s ease;
+        }
+
+        .hero-content .btn:hover {
+            background: #0ff;
+            box-shadow: 0 0 25px #00ffc3;
+        }
+
+        /* Products */
+        .products-section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .products-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00ffc3;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .product-price {
+            color: #00ffc3;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .buy-btn {
+            padding: 0.6rem 1.5rem;
+            background: #00ffc3;
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00ffc3;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: #0ff;
+            box-shadow: 0 0 20px #00ffc3;
+        }
+
+        /* Features */
+        .features-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: #0c0c0c;
+        }
+
+        .features-section h2 {
+            color: #00ffc3;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .feature-box {
+            flex: 1 1 250px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #00ffc3;
+            color: #ccc;
+            transition: transform 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Gallery */
+        .gallery-section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .gallery-section h2 {
+            font-size: 2.5rem;
+            color: #00ffc3;
+            margin-bottom: 2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 12px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 4rem 2rem;
+            background: #1a1a1a;
+            color: #ccc;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            color: #00ffc3;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .faq {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .faq-item {
+            flex: 1 1 250px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            color: #ddd;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .faq-item h3 {
+            color: #00ffc3;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Brands */
+        .brands-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: #0c0c0c;
+        }
+
+        .brands-section h2 {
+            color: #00ffc3;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .brands {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .brands img {
+            width: 100px;
+            height: auto;
+            opacity: 0.8;
+            transition: transform 0.3s;
+        }
+
+        .brands img:hover {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .newsletter-section h2 {
+            color: #00ffc3;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-section p {
+            color: #aaa;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            padding: 0.8rem 1rem;
+            border-radius: 30px;
+            border: none;
+            width: 300px;
+            max-width: 90%;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background: #00ffc3;
+            color: #000;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00ffc3;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #0ff;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: #0f0f0f;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            color: #00ffc3;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        /* Back to Top */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #00ffc3;
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+            box-shadow: 0 0 10px #00ffc3;
+            transition: all 0.3s;
+        }
+
+        #backToTop:hover {
+            background-color: #0ff;
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f0f0f;
+            margin-top: 4rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo" style="cursor: pointer;">MyShop</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+
+            <li class="right"><a href="signup.html">Signup</a></li>
+            <li class="right"><a href="login.html">Login</a></li>
+
+        </ul>
+    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Trendy Products</h1>
+            <p>Explore our latest collection — stylish, smart, and made just for you.</p>
+            <button class="btn">Shop Now</button>
+        </div>
+    </section>
+
+    <section class="products-section" id="products">
+        <h2>Our Products</h2>
+        <div class="products">
+            <div class="product-card"><img
+                    src="https://plus.unsplash.com/premium_photo-1692650759832-4d674420e5e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U3R5bGVzaCUyMGplY2tldHxlbnwwfHwwfHx8MA%3D%3D"
+                    alt="Product">
+                <div class="product-title">Stylish Jacket</div>
+                <div class="product-price">Rs. 2,499</div><button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card"><img
+                    src="https://images.unsplash.com/photo-1620226054624-5f49d1d66e5b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QXBwbGUlMjB3YXRjaGVzfGVufDB8fDB8fHww"
+                    alt="Product">
+                <div class="product-title">Smart Watch</div>
+                <div class="product-price">Rs. 3,999</div><button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card"><img
+                    src="https://images.unsplash.com/photo-1631642733377-66cd18aa254a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fFN0eWxpc2glMjBTbmVha2Vyc3xlbnwwfHwwfHx8MA%3D%3D"
+                    alt="Product">
+                <div class="product-title">Sneakers</div>
+                <div class="product-price">Rs. 1,999</div><button class="buy-btn">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2>Why Shop With Us?</h2>
+        <div class="features">
+            <div class="feature-box">
+                <h3>🚚 Free Shipping</h3>
+                <p>We offer fast & free delivery on all orders over Rs. 1000.</p>
+            </div>
+            <div class="feature-box">
+                <h3>🔁 Easy Returns</h3>
+                <p>No hassle 7-day return policy on all products.</p>
+            </div>
+            <div class="feature-box">
+                <h3>💳 Secure Payment</h3>
+                <p>All payments are 100% safe and encrypted.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2>Gallery</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80"
+                alt="Gallery 1">
+            <img src="https://images.unsplash.com/photo-1631642733377-66cd18aa254a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fFN0eWxpc2glMjBTbmVha2Vyc3xlbnwwfHwwfHx8MA%3D%3D"
+                alt="Gallery 2">
+            <img src="https://plus.unsplash.com/premium_photo-1692650759832-4d674420e5e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U3R5bGVzaCUyMGplY2tldHxlbnwwfHwwfHx8MA%3D%3D"
+                alt="Gallery 3">
+            <img src="https://images.unsplash.com/photo-1620226054624-5f49d1d66e5b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QXBwbGUlMjB3YXRjaGVzfGVufDB8fDB8fHww"
+                alt="Gallery 4">
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <h2>FAQs</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <h3>How long does delivery take?</h3>
+                <p>Delivery usually takes 3-5 working days.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I return my order?</h3>
+                <p>Yes! We have a 7-day no-questions-asked return policy.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What payment methods do you accept?</h3>
+                <p>Cash on Delivery, Cards, JazzCash & EasyPaisa.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="brands-section">
+        <h2>Trusted By</h2>
+        <div class="brands">
+            <img src="https://images.unsplash.com/photo-1631642733377-66cd18aa254a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fFN0eWxpc2glMjBTbmVha2Vyc3xlbnwwfHwwfHx8MA%3D%3D"
+                alt="Brand 1">
+            <img src="https://plus.unsplash.com/premium_photo-1692650759832-4d674420e5e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8U3R5bGVzaCUyMGplY2tldHxlbnwwfHwwfHx8MA%3D%3D"
+                alt="Brand 2">
+            <img src="https://images.unsplash.com/photo-1620226054624-5f49d1d66e5b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QXBwbGUlMjB3YXRjaGVzfGVufDB8fDB8fHww"
+                alt="Brand 3">
+            <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80"
+                alt="Brand 4">
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <h2>Stay Updated!</h2>
+        <p>Subscribe to get the latest offers & product launches.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Shop?</h2>
+        <p>Don't wait – grab your favorite items now!</p>
+        <style>
+            .btn {
+                background: #00ffc3;
+                color: #000;
+                border: none;
+                padding: 0.8rem 1.5rem;
+                border-radius: 30px;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 0 10px #00ffc3;
+                transition: all 0.3s ease;
+            }
+
+            .btn:hover {
+                background: #0ff;
+            }
+        </style>
+        <button class="btn">Browse Products</button>
+
+    </section>
+
+    <button id="backToTop" title="Go to top">↑</button>
+
+    <script>
+        const btn = document.getElementById("backToTop");
+        window.onscroll = () => {
+            btn.style.display = (document.documentElement.scrollTop > 300) ? "block" : "none";
+        };
+        btn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+    </script>
+
+    <footer>
+        &copy; 2025 MyShop. All rights reserved.
+    </footer>
+
+</body>
+
+</html>
