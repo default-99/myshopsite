@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Products - MyShop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111;
+            color: #fff;
+        }
+
+          nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 255, 195, 0.2);
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ffc3;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-grow: 1;
+           
+            justify-content: center;
+      
+            position: relative;
+        }
+
+        nav ul li.right {
+            position: absolute;
+      
+            right: 1.5rem;
+         
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        nav ul li.right:nth-child(4) {
+          
+            right: 5rem;
+          
+        }
+
+        nav ul li a:hover {
+            color: #00ffc3;
+        }
+        .products-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .products-section h1 {
+            font-size: 2.5rem;
+            color: #00ffc3;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            color: #00ffc3;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .buy-btn {
+            padding: 0.6rem 1.5rem;
+            background: #00ffc3;
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00ffc3;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: #0ff;
+            box-shadow: 0 0 20px #00ffc3;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0f0f0f;
+            margin-top: 4rem;
+            color: #666;
+        }
+
+
+
+
+        @media (max-width: 600px) {
+            .products-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo" style="cursor: pointer;">MyShop</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li class="right"><a href="signup.html">Signup</a></li>
+            <li class="right"><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="products-section">
+        <h1>Our Products</h1>
+        <div class="products">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80"
+                    alt="Stylish Jacket" />
+                <div class="product-title">Stylish Jacket</div>
+                <div class="product-price">Rs. 2,499</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1620226054624-5f49d1d66e5b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QXBwbGUlMjB3YXRjaGVzfGVufDB8fDB8fHww"
+                    alt="Smart Watch" />
+                <div class="product-title">Smart Watch</div>
+                <div class="product-price">Rs. 3,999</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=400&q=80"
+                    alt="Sneakers" />
+                <div class="product-title">Sneakers</div>
+                <div class="product-price">Rs. 1,999</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=400&q=80"
+                    alt="Wireless Headphones" />
+                <div class="product-title">Wireless Headphones</div>
+                <div class="product-price">Rs. 4,299</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+                    alt="Travel Backpack" />
+                <div class="product-title">Travel Backpack</div>
+                <div class="product-price">Rs. 3,199</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=400&q=80"
+                    alt="Cool Sunglasses" />
+                <div class="product-title">Cool Sunglasses</div>
+                <div class="product-price">Rs. 1,299</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80"
+                    alt="Leather Wallet" />
+                <div class="product-title">Leather Wallet</div>
+                <div class="product-price">Rs. 1,599</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?auto=format&fit=crop&w=400&q=80"
+                    alt="Elegant Watch" />
+                <div class="product-title">Elegant Watch</div>
+                <div class="product-price">Rs. 5,499</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=400&q=80"
+                    alt="Bluetooth Speaker" />
+                <div class="product-title">Bluetooth Speaker</div>
+                <div class="product-price">Rs. 2,999</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=80"
+                    alt="Casual Shirt" />
+                <div class="product-title">Casual Shirt</div>
+                <div class="product-price">Rs. 1,799</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=80"
+                    alt="Casual Shirt" />
+                <div class="product-title">Casual Shirt</div>
+                <div class="product-price">Rs. 1,799</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=80"
+                    alt="Casual Shirt" />
+                <div class="product-title">Casual Shirt</div>
+                <div class="product-price">Rs. 1,799</div>
+                <button class="buy-btn">Buy Now</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 MyShop. All rights reserved.
+    </footer>
+
+</body>
+
+</html>
