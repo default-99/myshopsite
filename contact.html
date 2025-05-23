@@ -160,11 +160,11 @@
     <nav>
         <div class="logo" style="cursor: pointer;">MyShop</div>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li class="right"><a href="signup.html">Signup</a></li>
-            <li class="right"><a href="login.html">Login</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li class="right"><a href="/signup">Signup</a></li>
+            <li class="right"><a href="/login">Login</a></li>
         </ul>
     </nav>
 
@@ -172,13 +172,20 @@
         <h1>Contact Us</h1>
         <p>Have questions? We'd love to hear from you.</p>
 
-        <form action="#" method="post">
-            <input type="text" name="name" placeholder="Your Name" required />
-            <input type="email" name="email" placeholder="Your Email" required />
-            <input type="text" name="subject" placeholder="Subject" />
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+        <form action="/contact" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="subject" placeholder="Subject" required>
+    <textarea name="message" placeholder="Message" required></textarea>
+    <button type="submit">Send Message</button>
+</form>
+
+<!-- Success message -->
+{% if success %}
+<div class="success-message">
+    Thank you! Your message has been sent.
+</div>
+{% endif %}
 
         <div class="contact-info">
             <h3>Our Contact Info</h3>
