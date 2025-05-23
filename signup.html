@@ -43,17 +43,17 @@
             display: flex;
             gap: 1.5rem;
             flex-grow: 1;
-           
+
             justify-content: center;
-      
+
             position: relative;
         }
 
         nav ul li.right {
             position: absolute;
-      
+
             right: 1.5rem;
-         
+
         }
 
         nav ul li a {
@@ -63,9 +63,9 @@
         }
 
         nav ul li.right:nth-child(4) {
-          
+
             right: 5rem;
-          
+
         }
 
         nav ul li a:hover {
@@ -158,11 +158,11 @@
     <nav>
         <div class="logo" style="cursor: pointer;">MyShop</div>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li class="right"><a href="signup.html">Signup</a></li>
-            <li class="right"><a href="login.html">Login</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li class="right"><a href="/signup">Signup</a></li>
+            <li class="right"><a href="/login">Login</a></li>
         </ul>
     </nav>
 
@@ -170,18 +170,55 @@
     <div class="main-content">
         <div class="signup-container">
             <h2>Create Your Account</h2>
-            <form action="#" method="POST">
-                <input type="text" placeholder="Full Name" required />
-                <input type="email" placeholder="Email Address" required />
-                <input type="password" placeholder="Password" required />
-                <input type="password" placeholder="Confirm Password" required />
+            <form id="signup-form" method="POST">
+                <input type="text" name="full_name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
                 <button type="submit">Sign Up</button>
             </form>
+            <div id="message"></div> <!-- Message display ke liye -->
             <div class="login-link">
-                Already have an account? <a href="login.html">Login here</a>
+                Already have an account? <a href="/login">Login here</a>
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelector('#signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    try {
+        const response = await fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(new FormData(e.target))
+        });
+        
+        if (response.redirected) {
+            window.location.href = response.url; // Automatic redirect
+        } else {
+            const result = await response.json();
+            if (result.success) {
+                document.getElementById('message').innerHTML = `
+                    <p style="color: green;">${result.message}</p>
+                `;
+                setTimeout(() => {
+                    window.location.href = result.redirect;
+                }, 2000);
+            } else {
+                document.getElementById('message').innerHTML = `
+                    <p style="color: red;">${result.error}</p>
+                `;
+            }
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+    </script>
 
 </body>
 
