@@ -478,25 +478,29 @@
 
 <body>
 
-   <nav class="navbar">
+  <nav class="navbar">
     <div class="logo">MyShop</div>
     
     <ul class="nav-links">
         <li><a href="/">Home</a></li>
         <li><a href="/products">Products</a></li>
         <li><a href="/contact">Contact</a></li>
+        {% if logged_in and user.role == 'admin' %}
+            <li><a href="/admin">Admin</a></li>
+        {% endif %}
     </ul>
 
-    <div class="auth-buttons" id="auth-buttons">
-    {% if session.logged_in %}
-        <span>Welcome, {{ session.user.username }}!</span>
-        <a href="/logout" class="btn">Logout</a>
-    {% else %}
-        <a href="/login" class="btn">Login</a>
-        <a href="/signup" class="btn">Signup</a>
-    {% endif %}
-</div>
+    <div class="auth-buttons">
+        {% if logged_in %}
+            <span style="color: #00ffc3; margin-right: 15px;">{{ user.username }}</span>
+            <a href="/logout" class="btn">Logout</a>
+        {% else %}
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn">Signup</a>
+        {% endif %}
+    </div>
 </nav>
+
 
     <section class="hero">
         <div class="hero-content">
