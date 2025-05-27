@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Signup - MyShop</title>
+    <!-- Same head content as before -->
     <style>
-        /* Reset and base */
+       /* Reset and base */
         * {
             margin: 0;
             padding: 0;
@@ -151,11 +148,8 @@
         }
     </style>
 </head>
-
 <body>
-
-    <!-- Navbar -->
-    <nav>
+   <nav>
         <div class="logo" style="cursor: pointer;">MyShop</div>
         <ul>
             <li><a href="/">Home</a></li>
@@ -170,56 +164,50 @@
     <div class="main-content">
         <div class="signup-container">
             <h2>Create Your Account</h2>
-            <form id="signup-form" method="POST">
-                <input type="text" name="full_name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-                <button type="submit">Sign Up</button>
-            </form>
-            <div id="message"></div> <!-- Message display ke liye -->
+             <form id="signupForm">
+        <input type="text" name="full_name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+
+            <div id="message" style="color: #00ffc3; text-align: center; margin-top: 1rem;"></div>
             <div class="login-link">
                 Already have an account? <a href="/login">Login here</a>
             </div>
         </div>
     </div>
 
-    <script>
-        document.querySelector('#signup-form').addEventListener('submit', async (e) => {
+ <script>
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
     try {
+        // 1. Form data collect karo
+        const formData = new FormData(e.target);
+        
+        // 2. Server ko bhejo
         const response = await fetch('/signup', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams(new FormData(e.target))
+            body: formData,
+            credentials: 'include'  // Important for sessions
         });
         
-        if (response.redirected) {
-            window.location.href = response.url; // Automatic redirect
+        // 3. Response check karo
+        const data = await response.json();
+        
+        if (data.success) {
+            // 4. Redirect karo aur page reload karo
+            window.location.href = data.redirect;
+            window.location.reload(true);
         } else {
-            const result = await response.json();
-            if (result.success) {
-                document.getElementById('message').innerHTML = `
-                    <p style="color: green;">${result.message}</p>
-                `;
-                setTimeout(() => {
-                    window.location.href = result.redirect;
-                }, 2000);
-            } else {
-                document.getElementById('message').innerHTML = `
-                    <p style="color: red;">${result.error}</p>
-                `;
-            }
+            alert("Error: " + data.error);
         }
     } catch (error) {
-        console.error('Error:', error);
+        alert("Network problem!");
     }
 });
     </script>
-
 </body>
-
 </html>
